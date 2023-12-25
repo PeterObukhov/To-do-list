@@ -1,26 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Printing;
-using System.Text;
-using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
 namespace To_do_list
 {
     internal class TaskList : INotifyPropertyChanged
     {
-        //Task selectedTask
-        //{
-        //    get { return selectedTask; }
-        //    set 
-        //    { 
-        //        selectedTask = value;
-        //        OnPropertyChanged("SelectedTask");
-        //    }
-        //}
         public ObservableCollection<Task> Tasks { get; set; }
         public int Count
         {
