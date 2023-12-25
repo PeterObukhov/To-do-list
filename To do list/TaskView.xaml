@@ -7,15 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Margin="5">
-                        <CheckBox />
-                        <TextBlock FontSize="18" Text="{Binding Path=Description}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <StackPanel Margin="5" Orientation="Horizontal">
+            <CheckBox VerticalAlignment="Center" Checked="ToggleStrikethrough" Unchecked=""/>
+            <TextBlock x:Name="DescriptionBlock" FontSize="18" Text="{Binding Path=Description}" VerticalAlignment="Center"/>
+        </StackPanel>
     </Grid>
 </UserControl>

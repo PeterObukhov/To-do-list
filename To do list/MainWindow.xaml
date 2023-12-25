@@ -4,18 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
+        xmlns:uc="clr-namespace:To_do_list"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="5">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                            <CheckBox VerticalAlignment="Center"/>
-                            <TextBlock FontSize="18" Text="{Binding Path=Description}" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </StackPanel>
+                    <uc:TaskView Description="{Binding Description}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
