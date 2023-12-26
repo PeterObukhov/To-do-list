@@ -30,7 +30,6 @@ namespace To_do_list
 
         private void ToggleStrikethrough(object sender, RoutedEventArgs e)
         {
-            // Set the underline decoration directly to the text block.
             DescriptionBlock.TextDecorations = DescriptionBlock.TextDecorations == TextDecorations.Strikethrough ? null : TextDecorations.Strikethrough;
         }
     }

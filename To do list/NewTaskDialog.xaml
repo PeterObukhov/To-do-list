@@ -1,0 +1,29 @@
+﻿<Window x:Class="To_do_list.NewTaskDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:To_do_list"
+        mc:Ignorable="d"
+        Title="NewTaskDialog" Height="110" Width="250">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0">Описание задачи:</TextBlock>
+        <TextBox x:Name="descTextBox" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Text="Ввод задачи" />
+        <TextBlock Grid.Column="0" Grid.Row="1">Срок выполнения:</TextBlock>
+        <DatePicker x:Name="datePicker" Grid.Column="1" Grid.Row="1"></DatePicker>
+        <WrapPanel Grid.Column="1" Grid.Row="2">
+            <Button IsDefault="True" Click="SaveButtonClick">_Сохранить</Button>
+            <Button IsCancel="True">_Отмена</Button>
+        </WrapPanel>
+    </Grid>
+</Window>

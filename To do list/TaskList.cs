@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -8,31 +7,74 @@ namespace To_do_list
     internal class TaskList : INotifyPropertyChanged
     {
         public ObservableCollection<Task> Tasks { get; set; }
+
+        IDialogService dialogService;
         public int Count
         {
             get { return Tasks.Count; }
         }
 
-        public void Delete(int id)
+        private RelayCommand addCommand;
+        public RelayCommand AddCommand
         {
-            Tasks.RemoveAt(id);
+            get
+            {
+                return addCommand ??
+                    (addCommand = new RelayCommand(obj =>
+                    {
+                        Task task = obj as Task;
+                        Tasks.Insert(Tasks.Count, task);
+                    }));
+            }
         }
 
-        public TaskList()
+        private RelayCommand deleteCommand;
+        public RelayCommand DeleteCommand
+        {
+            get
+            {
+                return deleteCommand ??
+                    (deleteCommand = new RelayCommand(obj =>
+                    {
+                        Task task = obj as Task;
+                        if(task != null)
+                        {
+                            Tasks.Remove(task);
+                        }
+                        
+                    },
+                    (obj) => Tasks.Count > 0));
+            }
+        }
+
+        private RelayCommand createNewTask;
+        public RelayCommand CreateNewTask
+        {
+            get
+            {
+                return createNewTask ??
+                    (createNewTask = new RelayCommand(obj =>
+                    {
+                        if (dialogService.OpenDialog() == true)
+                        {
+                            AddCommand.Execute(new Task()
+                            {
+                                Description = dialogService.Description,
+                                Deadline = dialogService.Deadline
+                            });
+                        }
+                    }));
+            }
+        }
+
+        public TaskList(IDialogService dialogService)
         {
             Tasks = new ObservableCollection<Task>() 
             { 
-                new Task() 
-                { 
-                    Description = "Задача 1", 
-                    Subtasks = new List<Task>()
-                    { 
-                        new Task() { Description = "Подзадача 1" },
-                        new Task() { Description = "Подзадача 2" }
-                    } 
-                },
+                new Task() { Description = "Задача 1" },
                 new Task() { Description = "Задача 2" },
             };
+            this.dialogService = dialogService;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -6,14 +6,22 @@
         xmlns:local="clr-namespace:To_do_list"
         xmlns:uc="clr-namespace:To_do_list"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="300">
     <Grid>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <uc:TaskView Description="{Binding Description}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <StackPanel>
+            <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <uc:TaskView Description = "{Binding Description}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <TextBlock>
+                <TextBlock.InputBindings>
+                    <MouseBinding Command="{Binding CreateNewTask}" MouseAction="LeftClick"/>
+                </TextBlock.InputBindings>
+                Добавить задачу
+            </TextBlock>
+        </StackPanel>
     </Grid>
 </Window>

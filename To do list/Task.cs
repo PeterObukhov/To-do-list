@@ -35,7 +35,7 @@ namespace To_do_list
             }
         }
         public List<Task> Subtasks { get; set; }
-        public DateTime Deadline { get; set; }
+        public DateTime? Deadline { get; set; }
         public bool HasSubtasks
         {
             get { return Subtasks != null && Subtasks.Count > 0; }
