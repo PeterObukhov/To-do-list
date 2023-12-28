@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace To_do_list
 {
@@ -63,6 +65,21 @@ namespace To_do_list
                                 Deadline = dialogService.Deadline
                             });
                         }
+                    }));
+            }
+        }
+
+        private RelayCommand toggleCompletionCommand;
+        public RelayCommand ToggleCompletionCommand
+        {
+            get
+            {
+                return toggleCompletionCommand ??
+                    (toggleCompletionCommand = new RelayCommand(obj =>
+                    {
+                        string description = obj as string;
+                        Task selectedTask = Tasks.First(x => x.Description == description);
+                        selectedTask.IsCompleted = !selectedTask.IsCompleted;
                     }));
             }
         }

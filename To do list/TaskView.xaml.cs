@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace To_do_list
 {
@@ -9,11 +10,21 @@ namespace To_do_list
     public partial class TaskView : UserControl
     {
         public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("Description", typeof(int), typeof(UserControl), new FrameworkPropertyMetadata(null));
+            DependencyProperty.Register("Description", typeof(string), typeof(TaskView), new FrameworkPropertyMetadata(null));
 
-        public TaskView()
+        public static readonly DependencyProperty ToggleCompletionCommandProperty =
+            DependencyProperty.Register("ToggleCompletionCommand", typeof(ICommand), typeof(TaskView), new FrameworkPropertyMetadata(null));
+
+        public ICommand ToggleCompletionCommand
         {
-            InitializeComponent();
+            get
+            {
+                return (ICommand)GetValue(ToggleCompletionCommandProperty);
+            }
+            set
+            {
+                SetValue(ToggleCompletionCommandProperty, value);
+            }
         }
 
         public string Description
@@ -26,6 +37,11 @@ namespace To_do_list
             {
                 SetValue(DescriptionProperty, value);
             }
+        }
+
+        public TaskView()
+        {
+            InitializeComponent();
         }
 
         private void ToggleStrikethrough(object sender, RoutedEventArgs e)
