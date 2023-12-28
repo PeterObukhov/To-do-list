@@ -9,7 +9,7 @@
         Title="MainWindow" Height="450" Width="300">
     <Grid>
         <StackPanel>
-            <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}">
+            <ListBox Grid.Column="0" ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <uc:TaskView Description="{Binding Description}" 
@@ -23,6 +23,7 @@
                 </TextBlock.InputBindings>
                 Добавить задачу
             </TextBlock>
+            <Button Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedTask}">Удалить</Button>
         </StackPanel>
     </Grid>
 </Window>

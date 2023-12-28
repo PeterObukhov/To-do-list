@@ -9,12 +9,22 @@ namespace To_do_list
     internal class TaskList : INotifyPropertyChanged
     {
         public ObservableCollection<Task> Tasks { get; set; }
+        private Task selectedTask;
+
+        public Task SelectedTask 
+        { 
+            get 
+            { 
+                return selectedTask; 
+            } 
+            set
+            {
+                selectedTask = value;
+                OnPropertyChanged("SelectedTask");
+            } 
+        }
 
         IDialogService dialogService;
-        public int Count
-        {
-            get { return Tasks.Count; }
-        }
 
         private RelayCommand addCommand;
         public RelayCommand AddCommand
