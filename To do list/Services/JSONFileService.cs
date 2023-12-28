@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.IO;
+using To_do_list.Interfaces;
+using To_do_list.Models;
 
-namespace To_do_list
+namespace To_do_list.Services
 {
     internal class JSONFileService : IFileService
     {
         private JsonSerializer jsonSerializer;
 
-        public JSONFileService() 
+        public JSONFileService()
         {
             jsonSerializer = new JsonSerializer();
         }

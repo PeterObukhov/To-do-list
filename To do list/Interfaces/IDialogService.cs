@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace To_do_list
+namespace To_do_list.Interfaces
 {
     internal interface IDialogService
     {

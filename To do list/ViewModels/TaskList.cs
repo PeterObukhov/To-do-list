@@ -3,25 +3,28 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using To_do_list.Interfaces;
+using To_do_list.Models;
+using To_do_list.Services;
 
-namespace To_do_list
+namespace To_do_list.ViewModels
 {
     internal class TaskList : INotifyPropertyChanged
     {
         public ObservableCollection<Task> Tasks { get; set; }
         private IDialogService dialogService;
         private Task selectedTask;
-        public Task SelectedTask 
-        { 
-            get 
-            { 
-                return selectedTask; 
-            } 
+        public Task SelectedTask
+        {
+            get
+            {
+                return selectedTask;
+            }
             set
             {
                 selectedTask = value;
                 OnPropertyChanged("SelectedTask");
-            } 
+            }
         }
 
         private RelayCommand addCommand;
@@ -47,11 +50,11 @@ namespace To_do_list
                     (deleteCommand = new RelayCommand(obj =>
                     {
                         Task task = obj as Task;
-                        if(task != null)
+                        if (task != null)
                         {
                             Tasks.Remove(task);
                         }
-                        
+
                     },
                     (obj) => Tasks.Count > 0));
             }
@@ -100,7 +103,7 @@ namespace To_do_list
                 return saveCommand ??
                     (saveCommand = new RelayCommand(obj =>
                     {
-                        if(dialogService.SaveFileDialog() == true)
+                        if (dialogService.SaveFileDialog() == true)
                         {
                             JSONFileService jSONFileService = new JSONFileService();
                             jSONFileService.Save(dialogService.FilePath, Tasks.ToList());
@@ -117,7 +120,7 @@ namespace To_do_list
                 return openCommand ??
                     (openCommand = new RelayCommand(obj =>
                     {
-                        if(dialogService.OpenFileDialog() == true)
+                        if (dialogService.OpenFileDialog() == true)
                         {
                             Tasks.Clear();
                             JSONFileService jSONFileService = new JSONFileService();
@@ -133,8 +136,8 @@ namespace To_do_list
 
         public TaskList(IDialogService dialogService)
         {
-            Tasks = new ObservableCollection<Task>() 
-            { 
+            Tasks = new ObservableCollection<Task>()
+            {
                 new Task() { Description = "Задача 1" },
                 new Task() { Description = "Задача 2" },
             };

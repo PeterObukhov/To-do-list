@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace To_do_list
+namespace To_do_list.Services
 {
     internal class RelayCommand : ICommand
     {
         private Action<object> execute;
         private Func<object, bool> canExecute;
-        
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
@@ -22,7 +22,7 @@ namespace To_do_list
 
         public bool CanExecute(object parameter)
         {
-            return this.canExecute == null || this.canExecute(parameter);
+            return canExecute == null || canExecute(parameter);
         }
 
         public void Execute(object parameter)

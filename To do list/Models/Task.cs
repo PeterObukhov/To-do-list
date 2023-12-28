@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace To_do_list
+namespace To_do_list.Models
 {
     internal class Task : INotifyPropertyChanged
     {
         private string description;
         private bool isCompleted;
 
-        public string Description 
+        public string Description
         {
             get
             {
                 return description;
             }
-            set 
+            set
             {
                 description = value;
                 OnPropertyChanged("Description");

@@ -1,7 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
+using To_do_list.Interfaces;
 
-namespace To_do_list
+namespace To_do_list.Services
 {
     internal class DefaultDialogService : IDialogService
     {
@@ -12,7 +13,7 @@ namespace To_do_list
         public bool NewTaskDialog()
         {
             NewTaskDialog newTaskDialog = new NewTaskDialog();
-            if(newTaskDialog.ShowDialog() == true)
+            if (newTaskDialog.ShowDialog() == true)
             {
                 Description = newTaskDialog.Description;
                 Deadline = newTaskDialog.Date;
@@ -24,7 +25,7 @@ namespace To_do_list
         public bool OpenFileDialog()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            if(openFileDialog.ShowDialog() == true)
+            if (openFileDialog.ShowDialog() == true)
             {
                 FilePath = openFileDialog.FileName;
                 return true;
@@ -35,7 +36,7 @@ namespace To_do_list
         public bool SaveFileDialog()
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if(saveFileDialog.ShowDialog() == true)
+            if (saveFileDialog.ShowDialog() == true)
             {
                 FilePath = saveFileDialog.FileName;
                 return true;
