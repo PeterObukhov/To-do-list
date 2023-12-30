@@ -8,11 +8,16 @@
              d:DesignHeight="450" d:DesignWidth="800"
              x:Name="root">
     <Grid>
-        <StackPanel Margin="5" Orientation="Horizontal">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
             <CheckBox x:Name="Checkbox"  VerticalAlignment="Center" Command="{Binding ToggleCompletionCommand, ElementName=root}" 
                       CommandParameter="{Binding Description}"
                       Checked="ToggleStrikethrough" Unchecked="ToggleStrikethrough"/>
             <TextBlock x:Name="DescriptionBlock" FontSize="18" Text="{Binding Description}" VerticalAlignment="Center"/>
         </StackPanel>
+        <TextBlock Grid.Row="1" Text="{Binding Deadline, StringFormat='{}Срок: {0:dd/MM/yyyy}'}" Visibility="{Binding Deadline, TargetNullValue=Collapsed}"/>
     </Grid>
 </UserControl>

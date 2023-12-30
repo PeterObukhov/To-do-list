@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -9,8 +10,6 @@ namespace To_do_list
     /// </summary>
     public partial class TaskView : UserControl
     {
-        public static readonly DependencyProperty DescriptionProperty =
-            DependencyProperty.Register("Description", typeof(string), typeof(TaskView), new FrameworkPropertyMetadata(null));
 
         public static readonly DependencyProperty ToggleCompletionCommandProperty =
             DependencyProperty.Register("ToggleCompletionCommand", typeof(ICommand), typeof(TaskView), new FrameworkPropertyMetadata(null));
@@ -27,6 +26,9 @@ namespace To_do_list
             }
         }
 
+
+        public static readonly DependencyProperty DescriptionProperty =
+            DependencyProperty.Register("Description", typeof(string), typeof(TaskView), new FrameworkPropertyMetadata(null));
         public string Description
         {
             get
@@ -36,6 +38,20 @@ namespace To_do_list
             set
             {
                 SetValue(DescriptionProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty DeadlineProperty =
+            DependencyProperty.Register("Deadline", typeof(DateTime), typeof(TaskView), new FrameworkPropertyMetadata(null));
+        public DateTime Deadline
+        {
+            get
+            {
+                return (DateTime)GetValue(DeadlineProperty);
+            }
+            set
+            {
+                SetValue(DeadlineProperty, value);
             }
         }
 
