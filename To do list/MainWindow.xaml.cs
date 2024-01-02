@@ -13,7 +13,8 @@ namespace To_do_list
         {
             InitializeComponent();
 
-            DataContext = new TaskList(new DefaultDialogService());
+            //DataContext = new TaskViewModel(new DefaultDialogService());
+            DataContext = new TaskBlockViewModel();
         }
     }
 }

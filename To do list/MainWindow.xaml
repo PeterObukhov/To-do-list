@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
-        xmlns:uc="clr-namespace:To_do_list"
+        xmlns:views="clr-namespace:To_do_list.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="300">
     <Grid>
@@ -20,21 +20,19 @@
             </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1">
-            <ListBox ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}">
+            <!--<ListBox ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>-->
+            <ListBox ItemsSource="{Binding TaskBlocks}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <uc:TaskView Description="{Binding Description}"
-                                     Deadline="{Binding Deadline}"
-                                     ToggleCompletionCommand="{Binding DataContext.ToggleCompletionCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}} }"/>
+                        <views:TaskBlockView Title="{Binding Title}" Tasks="{Binding TaskBlockList}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <TextBlock>
-                <TextBlock.InputBindings>
-                    <MouseBinding Command="{Binding CreateNewTask}" MouseAction="LeftClick"/>
-                </TextBlock.InputBindings>
-                Добавить задачу
-            </TextBlock>
+                    <!--</DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>-->
             <Button Grid.Row="2" Grid.Column="0" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedTask}">Удалить</Button>
         </StackPanel>
     </Grid>

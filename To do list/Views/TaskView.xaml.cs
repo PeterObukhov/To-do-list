@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace To_do_list
+namespace To_do_list.Views
 {
     /// <summary>
     /// Interaction logic for TaskView.xaml

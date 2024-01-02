@@ -9,7 +9,7 @@ using To_do_list.Services;
 
 namespace To_do_list.ViewModels
 {
-    internal class TaskList : INotifyPropertyChanged
+    internal class TaskViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Task> Tasks { get; set; }
         private IDialogService dialogService;
@@ -134,13 +134,8 @@ namespace To_do_list.ViewModels
             }
         }
 
-        public TaskList(IDialogService dialogService)
+        public TaskViewModel(IDialogService dialogService)
         {
-            Tasks = new ObservableCollection<Task>()
-            {
-                new Task() { Description = "Задача 1" },
-                new Task() { Description = "Задача 2" },
-            };
             this.dialogService = dialogService;
         }
 
