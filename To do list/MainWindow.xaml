@@ -13,26 +13,20 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Menu>
+        <Menu Grid.Row="0">
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть" Command="{Binding OpenCommand}" />
                 <MenuItem Header="Сохранить" Command="{Binding SaveCommand}"/>
             </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1">
-            <!--<ListBox ItemsSource="{Binding Tasks}" SelectedItem="{Binding SelectedTask}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>-->
             <ListBox ItemsSource="{Binding TaskBlocks}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <views:TaskBlockView Title="{Binding Title}" Tasks="{Binding TaskBlockList}"/>
+                        <views:TaskBlockView DataContext="{Binding}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-                    <!--</DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>-->
             <Button Grid.Row="2" Grid.Column="0" Command="{Binding DeleteCommand}" CommandParameter="{Binding SelectedTask}">Удалить</Button>
         </StackPanel>
     </Grid>

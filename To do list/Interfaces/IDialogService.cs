@@ -2,7 +2,7 @@
 
 namespace To_do_list.Interfaces
 {
-    internal interface IDialogService
+    public interface IDialogService
     {
         string Description { get; set; }
         string FilePath { get; set; }

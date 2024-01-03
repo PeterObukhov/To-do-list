@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace To_do_list.Models
 {
-    internal class Task : INotifyPropertyChanged
+    public class Task : INotifyPropertyChanged
     {
         private string description;
         private bool isCompleted;

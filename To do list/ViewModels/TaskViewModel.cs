@@ -9,8 +9,9 @@ using To_do_list.Services;
 
 namespace To_do_list.ViewModels
 {
-    internal class TaskViewModel : INotifyPropertyChanged
+    public class TaskViewModel : INotifyPropertyChanged
     {
+        public string Title { get; set; }
         public ObservableCollection<Task> Tasks { get; set; }
         private IDialogService dialogService;
         private Task selectedTask;
