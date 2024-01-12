@@ -15,13 +15,15 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <TextBlock Grid.Column="0" Grid.Row="0">Описание задачи:</TextBlock>
-        <TextBox x:Name="descTextBox" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Text="Введите текст" />
-        <TextBlock Grid.Column="0" Grid.Row="1">Срок выполнения:</TextBlock>
-        <DatePicker x:Name="datePicker" Grid.Column="1" Grid.Row="1"></DatePicker>
-        <WrapPanel Grid.Column="1" Grid.Row="2">
+        <TextBlock Grid.Column="0" Grid.Row="0">Группа задач:</TextBlock>
+        <ComboBox x:Name="comboBox" Grid.Column="1" Grid.Row="0" />
+        <TextBlock Grid.Column="0" Grid.Row="1">Описание задачи:</TextBlock>
+        <TextBox x:Name="descTextBox" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="Введите текст" />
+        <TextBlock Grid.Column="0" Grid.Row="2">Срок выполнения:</TextBlock>
+        <DatePicker x:Name="datePicker" Grid.Column="1" Grid.Row="2"></DatePicker>
+        <WrapPanel Grid.Column="1" Grid.Row="3">
             <Button IsDefault="True" Click="SaveButtonClick">_Сохранить</Button>
             <Button IsCancel="True">_Отмена</Button>
         </WrapPanel>

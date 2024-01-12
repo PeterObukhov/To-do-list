@@ -15,17 +15,17 @@ namespace To_do_list.Services
             jsonSerializer = new JsonSerializer();
         }
 
-        public List<Task> Open(string path)
+        public List<TaskBlock> Open(string path)
         {
-            List<Task> tasks = new List<Task>();
+            List<TaskBlock> tasks = new List<TaskBlock>();
             using (StreamReader sr = new StreamReader(new FileStream(path, FileMode.OpenOrCreate)))
             {
-                tasks = jsonSerializer.Deserialize(sr, typeof(List<Task>)) as List<Task>;
+                tasks = jsonSerializer.Deserialize(sr, typeof(List<TaskBlock>)) as List<TaskBlock>;
             }
             return tasks;
         }
 
-        public void Save(string path, List<Task> tasks)
+        public void Save(string path, List<TaskBlock> tasks)
         {
             using (StreamWriter sw = new StreamWriter(new FileStream(path, FileMode.OpenOrCreate)))
             {

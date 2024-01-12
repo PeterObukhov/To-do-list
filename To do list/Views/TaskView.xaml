@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
             <CheckBox x:Name="Checkbox"  VerticalAlignment="Center" Command="{Binding ToggleCompletionCommand, ElementName=root}" 
-                      CommandParameter="{Binding Description}"
+                      CommandParameter="{Binding Id}"
                       Checked="ToggleStrikethrough" Unchecked="ToggleStrikethrough"/>
             <TextBlock x:Name="DescriptionBlock" FontSize="18" Text="{Binding Description}" VerticalAlignment="Center"/>
         </StackPanel>

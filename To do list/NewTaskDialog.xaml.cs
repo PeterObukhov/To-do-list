@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using To_do_list.Models;
 
 namespace To_do_list
 {
@@ -9,11 +12,13 @@ namespace To_do_list
     /// </summary>
     public partial class NewTaskDialog : Window
     {
-        public NewTaskDialog()
+        public NewTaskDialog(List<TaskBlock> taskBlocks)
         {
             InitializeComponent();
             descTextBox.GotFocus += RemoveText;
             descTextBox.LostFocus += AddText;
+            comboBox.ItemsSource = taskBlocks;
+            comboBox.DisplayMemberPath = "Title";
         }
 
         public string Description 
@@ -26,10 +31,21 @@ namespace To_do_list
             get { return datePicker.SelectedDate; }
         }
 
+        public TaskBlock SelectedTaskBlock
+        {
+            get
+            {
+                ComboBoxItem typeItem = (ComboBoxItem)comboBox.SelectedItem;
+                return typeItem.Content as TaskBlock;
+            }
+        }
+
         public void SaveButtonClick(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;
         }
+
+        public List<TaskBlock> TaskBlocks { get; set; }
 
         public void AddText(object sender, EventArgs e)
         {

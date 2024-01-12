@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -34,23 +35,14 @@ namespace To_do_list.Models
                 OnPropertyChanged("IsCompleted");
             }
         }
-        public List<Task> Subtasks { get; set; }
         public DateTime? Deadline { get; set; }
-        public bool HasSubtasks
-        {
-            get { return Subtasks != null && Subtasks.Count > 0; }
-        }
+        public int Id { get; set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
-        public void ChangeState()
-        {
-            IsCompleted = !IsCompleted;
         }
     }
 }
