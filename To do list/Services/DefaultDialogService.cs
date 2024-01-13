@@ -20,6 +20,7 @@ namespace To_do_list.Services
             {
                 Description = newTaskDialog.Description;
                 Deadline = newTaskDialog.Date;
+                SelectedTaskBlock = newTaskDialog.SelectedTaskBlock;
                 return true;
             }
             return false;

@@ -49,8 +49,31 @@ namespace To_do_list.ViewModels
                 return addCommand ??
                     (addCommand = new RelayCommand(obj =>
                     {
-                        Task task = obj as Task;
-                        //Tasks.Insert(Tasks.Count, task);
+                        ValueTuple<TaskBlock, Task> newTask = (ValueTuple<TaskBlock, Task>)obj;
+                        TreeModel.Single(tb => tb == newTask.Item1).Children.Add(newTask.Item2);
+                    }));
+            }
+        }
+
+        private RelayCommand createNewTask;
+        public RelayCommand CreateNewTask
+        {
+            get
+            {
+                return createNewTask ??
+                    (createNewTask = new RelayCommand(obj =>
+                    {
+                        if (dialogService.NewTaskDialog(TreeModel.ToList()) == true)
+                        {
+                            AddCommand.Execute(
+                                (
+                                dialogService.SelectedTaskBlock,
+                                new Task()
+                                {
+                                    Description = dialogService.Description,
+                                    Deadline = dialogService.Deadline
+                                }));
+                        }
                     }));
             }
         }
@@ -82,28 +105,7 @@ namespace To_do_list.ViewModels
             }
         }
 
-        private RelayCommand createNewTask;
-        public RelayCommand CreateNewTask
-        {
-            get
-            {
-                return createNewTask ??
-                    (createNewTask = new RelayCommand(obj =>
-                    {
-                        if (dialogService.NewTaskDialog(TreeModel.ToList()) == true)
-                        {
-                            AddCommand.Execute(
-                                (
-                                dialogService.SelectedTaskBlock, 
-                                new Task()
-                                {
-                                    Description = dialogService.Description,
-                                    Deadline = dialogService.Deadline
-                                }));
-                        }
-                    }));
-            }
-        }
+        
 
         private RelayCommand toggleCompletionCommand;
         public RelayCommand ToggleCompletionCommand
@@ -116,7 +118,6 @@ namespace To_do_list.ViewModels
                         int id = (int)obj;
                         Task selectedTask = TreeModel.SelectMany(tb => tb.Children).FirstOrDefault(t => t.Id == id);
                         selectedTask.IsCompleted = !selectedTask.IsCompleted;
-                        MessageBox.Show(selectedTask.IsCompleted.ToString());
                     }));
             }
         }

@@ -35,8 +35,7 @@ namespace To_do_list
         {
             get
             {
-                ComboBoxItem typeItem = (ComboBoxItem)comboBox.SelectedItem;
-                return typeItem.Content as TaskBlock;
+                return (TaskBlock)comboBox.SelectedItem;
             }
         }
 
