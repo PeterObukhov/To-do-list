@@ -50,6 +50,10 @@ namespace To_do_list.ViewModels
                     (addCommand = new RelayCommand(obj =>
                     {
                         ValueTuple<TaskBlock, Task> newTask = (ValueTuple<TaskBlock, Task>)obj;
+                        if (!TreeModel.Contains(newTask.Item1)) 
+                        {
+                            TreeModel.Add(newTask.Item1);
+                        }
                         TreeModel.Single(tb => tb == newTask.Item1).Children.Add(newTask.Item2);
                     }));
             }

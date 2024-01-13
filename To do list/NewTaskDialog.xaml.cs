@@ -35,6 +35,10 @@ namespace To_do_list
         {
             get
             {
+                if(comboBox.SelectedItem == null)
+                {
+                    return new TaskBlock() { Title=comboBox.Text };
+                }
                 return (TaskBlock)comboBox.SelectedItem;
             }
         }
