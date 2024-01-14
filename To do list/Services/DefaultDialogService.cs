@@ -1,6 +1,8 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
 using To_do_list.Interfaces;
 using To_do_list.Models;
 
@@ -32,6 +34,7 @@ namespace To_do_list.Services
             if (openFileDialog.ShowDialog() == true)
             {
                 FilePath = openFileDialog.FileName;
+                SaveLastFilePath(FilePath);
                 return true;
             }
             return false;
@@ -43,9 +46,19 @@ namespace To_do_list.Services
             if (saveFileDialog.ShowDialog() == true)
             {
                 FilePath = saveFileDialog.FileName;
+                SaveLastFilePath(FilePath);
                 return true;
             }
             return false;
+        }
+
+        private void SaveLastFilePath(string filePath)
+        {
+            string path = String.Format("{0}\\lastFile.txt", Directory.GetCurrentDirectory());
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                sw.WriteLine(filePath);
+            }
         }
     }
 }

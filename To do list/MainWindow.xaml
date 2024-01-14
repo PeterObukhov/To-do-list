@@ -16,6 +16,7 @@
         <Menu Grid.Row="0">
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть" Command="{Binding OpenCommand}" />
+                <MenuItem Header="Сохранить как" Command="{Binding SaveAsCommand}"/>
                 <MenuItem Header="Сохранить" Command="{Binding SaveCommand}"/>
             </MenuItem>
         </Menu>

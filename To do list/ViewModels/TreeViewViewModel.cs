@@ -11,12 +11,14 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 using To_do_list.Interfaces;
+using System.IO;
 
 namespace To_do_list.ViewModels
 {
     class TreeViewViewModel
     {
         private IDialogService dialogService;
+        private IFileService fileService;
         public ObservableCollection<TaskBlock> TreeModel { get; set; }
 
 
@@ -134,10 +136,25 @@ namespace To_do_list.ViewModels
                 return saveCommand ??
                     (saveCommand = new RelayCommand(obj =>
                     {
+                        if(dialogService.FilePath != null)
+                        {
+                            fileService.Save(dialogService.FilePath, TreeModel.ToList());
+                        }
+                    }));
+            }
+        }
+
+        private RelayCommand saveAsCommand;
+        public RelayCommand SaveAsCommand
+        {
+            get
+            {
+                return saveAsCommand ??
+                    (saveAsCommand = new RelayCommand(obj =>
+                    {
                         if (dialogService.SaveFileDialog() == true)
                         {
-                            JSONFileService jSONFileService = new JSONFileService();
-                            jSONFileService.Save(dialogService.FilePath, TreeModel.ToList());
+                            fileService.Save(dialogService.FilePath, TreeModel.ToList());
                         }
                     }));
             }
@@ -154,9 +171,8 @@ namespace To_do_list.ViewModels
                         if (dialogService.OpenFileDialog() == true)
                         {
                             TreeModel.Clear();
-                            JSONFileService jSONFileService = new JSONFileService();
-                            List<TaskBlock> tasks = jSONFileService.Open(dialogService.FilePath);
-                            foreach (TaskBlock taskBlock in tasks)
+                            List<TaskBlock> taskBlocks = fileService.Open(dialogService.FilePath);
+                            foreach (TaskBlock taskBlock in taskBlocks)
                             {
                                 TreeModel.Add(taskBlock);
                             }
@@ -165,30 +181,34 @@ namespace To_do_list.ViewModels
             }
         }
 
-        public TreeViewViewModel(IDialogService dialogService)
+        public TreeViewViewModel(IDialogService dialogService, IFileService fileService)
         {
             this.dialogService = dialogService;
-            TreeModel = new ObservableCollection<TaskBlock>()
+            this.fileService = fileService;
+            TreeModel = new ObservableCollection<TaskBlock>();
+            Load();
+        }
+
+        private void Load()
+        {
+            string path = String.Format("{0}\\lastFile.txt", Directory.GetCurrentDirectory());
+            if(File.Exists(path))
             {
-                new TaskBlock()
+                using (StreamReader sr = new StreamReader(path))
                 {
-                    Title="Список 1",
-                    Children = new ObservableCollection<Models.Task>()
+                    string filePath = sr.ReadLine();
+                    if (!String.IsNullOrEmpty(filePath))
                     {
-                        new Models.Task(){Id = 0, Description = "Задача 1"},
-                        new Models.Task(){Id = 1, Description = "Задача 2"},
-                    }
-                },
-                new TaskBlock()
-                {
-                    Title="Список 2",
-                    Children = new ObservableCollection<Models.Task>()
-                    {
-                        new Models.Task(){Id = 2, Description = "Задача 3"},
-                        new Models.Task(){Id = 3, Description = "Задача 4"},
+                        dialogService.FilePath = filePath;
+                        TreeModel.Clear();
+                        List<TaskBlock> taskBlocks = fileService.Open(filePath);
+                        foreach (TaskBlock taskBlock in taskBlocks)
+                        {
+                            TreeModel.Add(taskBlock);
+                        }
                     }
                 }
-            };
+            }
         }
     }
 }

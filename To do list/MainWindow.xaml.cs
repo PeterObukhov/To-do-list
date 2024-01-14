@@ -15,7 +15,7 @@ namespace To_do_list
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new TreeViewViewModel(new DefaultDialogService());
+            DataContext = new TreeViewViewModel(new DefaultDialogService(), new JSONFileService());
         }
         private void OnPreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
