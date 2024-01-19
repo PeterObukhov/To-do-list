@@ -55,6 +55,35 @@ namespace To_do_list.Views
             }
         }
 
+        public static readonly DependencyProperty IsCompletedProperty =
+            DependencyProperty.Register("IsCompleted", typeof(bool), typeof(TaskView), new FrameworkPropertyMetadata(new PropertyChangedCallback(OnCompletionChanged)));
+        public bool IsCompleted
+        {
+            get
+            {
+                return (bool)GetValue(IsCompletedProperty);
+            }
+            set
+            {
+                SetValue(IsCompletedProperty, value);
+            }
+        }
+
+        private static void OnCompletionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            TaskView taskView = d as TaskView;
+            taskView.checkBox.IsChecked = (bool)e.NewValue;
+
+            if ((bool)e.NewValue)
+            {
+                taskView.DescriptionBlock.TextDecorations = TextDecorations.Strikethrough;
+            }
+            else
+            {
+                taskView.DescriptionBlock.TextDecorations = null;
+            }
+        }
+
         public TaskView()
         {
             InitializeComponent();
@@ -62,7 +91,16 @@ namespace To_do_list.Views
 
         private void ToggleStrikethrough(object sender, RoutedEventArgs e)
         {
-            DescriptionBlock.TextDecorations = DescriptionBlock.TextDecorations == TextDecorations.Strikethrough ? null : TextDecorations.Strikethrough;
+            if (IsCompleted)
+            {
+                DescriptionBlock.TextDecorations = TextDecorations.Strikethrough;
+                checkBox.IsChecked = true;
+            }
+            else
+            {
+                DescriptionBlock.TextDecorations = null;
+                checkBox.IsChecked = false;
+            }
         }
     }
 }

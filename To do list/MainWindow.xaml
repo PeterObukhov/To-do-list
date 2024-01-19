@@ -34,7 +34,8 @@
                         <HierarchicalDataTemplate.ItemTemplate>
                             <DataTemplate>
                                 <views:TaskView Description="{Binding Description}" 
-                                                ToggleCompletionCommand="{Binding DataContext.ToggleCompletionCommand, RelativeSource={RelativeSource AncestorType={x:Type TreeView}} }"/>
+                                                ToggleCompletionCommand="{Binding DataContext.ToggleCompletionCommand, RelativeSource={RelativeSource AncestorType={x:Type TreeView}} }"
+                                                IsCompleted="{Binding IsCompleted}"/>
                             </DataTemplate>
                         </HierarchicalDataTemplate.ItemTemplate>
                     </HierarchicalDataTemplate>

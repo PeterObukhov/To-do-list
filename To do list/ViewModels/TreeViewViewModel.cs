@@ -21,28 +21,6 @@ namespace To_do_list.ViewModels
         private IFileService fileService;
         public ObservableCollection<TaskBlock> TreeModel { get; set; }
 
-
-        private TreeViewItem selectedTask;
-        public TreeViewItem SelectedTask
-        {
-            get
-            {
-                return selectedTask;
-            }
-            set
-            {
-                selectedTask = value;
-                OnPropertyChanged("SelectedTask");
-            }
-        }
-
-        public event PropertyChangedEventHandler? PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
         private RelayCommand addCommand;
         public RelayCommand AddCommand
         {
