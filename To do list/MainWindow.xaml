@@ -7,6 +7,9 @@
         xmlns:views="clr-namespace:To_do_list.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="300">
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveCommand}"/>
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
