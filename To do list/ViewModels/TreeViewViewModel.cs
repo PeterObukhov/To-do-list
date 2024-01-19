@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Windows.Controls;
-using System.Windows;
 using To_do_list.Models;
 using To_do_list.Services;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Media;
 using To_do_list.Interfaces;
 using System.IO;
 
@@ -34,6 +28,7 @@ namespace To_do_list.ViewModels
                         {
                             TreeModel.Add(newTask.Item1);
                         }
+                        newTask.Item2.Id = TreeModel.Sum(tb => tb.Children.Count);
                         TreeModel.Single(tb => tb == newTask.Item1).Children.Add(newTask.Item2);
                     }));
             }

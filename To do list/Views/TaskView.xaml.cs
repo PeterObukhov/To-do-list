@@ -88,19 +88,5 @@ namespace To_do_list.Views
         {
             InitializeComponent();
         }
-
-        private void ToggleStrikethrough(object sender, RoutedEventArgs e)
-        {
-            if (IsCompleted)
-            {
-                DescriptionBlock.TextDecorations = TextDecorations.Strikethrough;
-                checkBox.IsChecked = true;
-            }
-            else
-            {
-                DescriptionBlock.TextDecorations = null;
-                checkBox.IsChecked = false;
-            }
-        }
     }
 }
