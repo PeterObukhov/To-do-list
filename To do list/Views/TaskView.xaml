@@ -15,7 +15,9 @@
         <StackPanel Grid.Row="0" Margin="5" Orientation="Horizontal">
             <CheckBox x:Name="checkBox"  VerticalAlignment="Center" Command="{Binding ToggleCompletionCommand, ElementName=root}" 
                       CommandParameter="{Binding Id}"/>
-            <TextBlock x:Name="DescriptionBlock" FontSize="18" Text="{Binding Description}" VerticalAlignment="Center"/>
+            <StackPanel Width="195">
+                <TextBlock Margin="5,0,0,0" x:Name="DescriptionBlock" TextWrapping="Wrap" FontSize="18" Text="{Binding Description}" VerticalAlignment="Center"/>
+            </StackPanel>
         </StackPanel>
         <TextBlock Grid.Row="1" Text="{Binding Deadline, StringFormat='{}Срок: {0:dd/MM/yyyy}'}" Visibility="{Binding Deadline, TargetNullValue=Collapsed}"/>
     </Grid>

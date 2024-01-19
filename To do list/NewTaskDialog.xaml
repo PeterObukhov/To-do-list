@@ -5,27 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:To_do_list"
         mc:Ignorable="d"
-        Title="NewTaskDialog" Height="140" Width="250">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Grid.Row="0">Группа задач:</TextBlock>
-        <ComboBox x:Name="comboBox" Grid.Column="1" Grid.Row="0" IsEditable="True"/>
-        <TextBlock Grid.Column="0" Grid.Row="1">Описание задачи:</TextBlock>
-        <TextBox x:Name="descTextBox" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Text="Введите текст" />
-        <TextBlock Grid.Column="0" Grid.Row="2">Срок выполнения:</TextBlock>
-        <DatePicker x:Name="datePicker" Grid.Column="1" Grid.Row="2"></DatePicker>
-        <WrapPanel Grid.Column="1" Grid.Row="3">
-            <Button IsDefault="True" Click="SaveButtonClick">_Сохранить</Button>
-            <Button IsCancel="True">_Отмена</Button>
-        </WrapPanel>
-    </Grid>
+        Title="NewTaskDialog" Height="140" Width="260">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Grid.Row="0">Группа задач:</TextBlock>
+            <StackPanel Width="120" Grid.Column="1" Grid.Row="0">
+                <ComboBox x:Name="comboBox" IsEditable="True"/>
+            </StackPanel>
+            <TextBlock Grid.Column="0" Grid.Row="1">Описание задачи:</TextBlock>
+            <StackPanel Width="120" Grid.Column="1" Grid.Row="1">
+                <TextBox x:Name="descTextBox"  Text="Введите текст" TextWrapping="Wrap"/>
+            </StackPanel>
+            <TextBlock Grid.Column="0" Grid.Row="2">Срок выполнения:</TextBlock>
+            <DatePicker x:Name="datePicker" Grid.Column="1" Grid.Row="2"></DatePicker>
+            <WrapPanel Grid.Column="1" Grid.Row="3">
+                <Button IsDefault="True" Click="SaveButtonClick">_Сохранить</Button>
+                <Button IsCancel="True">_Отмена</Button>
+            </WrapPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>

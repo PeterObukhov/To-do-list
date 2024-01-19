@@ -10,7 +10,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0">
@@ -20,8 +20,7 @@
                 <MenuItem Header="Сохранить" Command="{Binding SaveCommand}"/>
             </MenuItem>
         </Menu>
-        <StackPanel Grid.Row="1">
-            <TreeView x:Name="mainTree" ItemsSource="{Binding TreeModel}" PreviewMouseRightButtonDown="OnPreviewMouseRightButtonDown">
+        <TreeView Grid.Row="1" x:Name="mainTree" ItemsSource="{Binding TreeModel}" PreviewMouseRightButtonDown="OnPreviewMouseRightButtonDown">
                 <TreeView.ContextMenu>
                     <ContextMenu>
                         <MenuItem Header="Удалить" Command="{Binding DeleteCommand}" CommandParameter="{Binding PlacementTarget.SelectedItem, 
@@ -41,7 +40,6 @@
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
-            <Button Grid.Row="2" Grid.Column="0" Command="{Binding CreateNewTask}" CommandParameter="">Добавить</Button>
-        </StackPanel>
+        <Button Grid.Row="2" Grid.Column="0" Command="{Binding CreateNewTask}" CommandParameter="">Добавить</Button>
     </Grid>
 </Window>
