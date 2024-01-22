@@ -10,7 +10,7 @@
     <Window.InputBindings>
         <KeyBinding Modifiers="Ctrl" Key="S" Command="{Binding SaveCommand}"/>
     </Window.InputBindings>
-    <Grid>
+    <Grid PreviewMouseLeftButtonDown="OnMouseButtonDown">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>

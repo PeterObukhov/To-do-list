@@ -35,5 +35,28 @@ namespace To_do_list
 
             return source as TreeViewItem;
         }
+
+        private void OnMouseButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            TreeViewItem treeViewItem = VisualUpwardSearch(e.OriginalSource as DependencyObject);
+            if (treeViewItem == null) 
+            {
+                ClearSelection(mainTree.Items, mainTree.ItemContainerGenerator);
+            }
+        }
+
+        private void ClearSelection(ItemCollection ic, ItemContainerGenerator icg)
+        {
+            if ((ic != null) && (icg != null))
+                for (int i = 0; i < ic.Count; i++)
+                {
+                    TreeViewItem tvi = icg.ContainerFromIndex(i) as TreeViewItem;
+                    if (tvi != null)
+                    {
+                        ClearSelection(tvi.Items, tvi.ItemContainerGenerator);
+                        tvi.IsSelected = false;
+                    }
+                }
+        }
     }
 }
