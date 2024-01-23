@@ -14,9 +14,9 @@ namespace To_do_list.Services
         public string FilePath { get; set; }
         public TaskBlock SelectedTaskBlock { get; set; }
 
-        public bool NewTaskDialog(List<TaskBlock> taskBlocks)
+        public bool NewTaskDialog(List<TaskBlock> taskBlocks, TaskBlock selectedTB = null)
         {
-            NewTaskDialog newTaskDialog = new NewTaskDialog(taskBlocks);
+            NewTaskDialog newTaskDialog = new NewTaskDialog(taskBlocks, selectedTB);
             if (newTaskDialog.ShowDialog() == true)
             {
                 Description = newTaskDialog.Description;

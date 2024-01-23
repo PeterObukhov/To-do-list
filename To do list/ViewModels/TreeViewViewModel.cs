@@ -42,7 +42,12 @@ namespace To_do_list.ViewModels
                 return createNewTask ??
                     (createNewTask = new RelayCommand(obj =>
                     {
-                        if (dialogService.NewTaskDialog(TreeModel.ToList()) == true)
+                        TaskBlock selectedTB = null;
+                        if (obj != "")
+                        {
+                            selectedTB = (TaskBlock)obj;
+                        }
+                        if (dialogService.NewTaskDialog(TreeModel.ToList(), selectedTB) == true)
                         {
                             AddCommand.Execute(
                                 (

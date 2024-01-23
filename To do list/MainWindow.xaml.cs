@@ -58,5 +58,21 @@ namespace To_do_list
                     }
                 }
         }
+
+        private void SolutionTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if(mainTree.SelectedItem != null)
+            {
+                switch (mainTree.SelectedItem.GetType().Name)
+                {
+                    case "TaskBlock":
+                        mainTree.ContextMenu = mainTree.Resources["TaskBlockContext"] as ContextMenu;
+                        break;
+                    case "Task":
+                        mainTree.ContextMenu = mainTree.Resources["TaskContext"] as ContextMenu;
+                        break;
+                }
+            }
+        }
     }
 }

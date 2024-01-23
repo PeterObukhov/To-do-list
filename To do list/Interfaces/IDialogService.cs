@@ -12,6 +12,6 @@ namespace To_do_list.Interfaces
         TaskBlock SelectedTaskBlock { get; set; }
         bool SaveFileDialog();
         bool OpenFileDialog();
-        bool NewTaskDialog(List<TaskBlock> taskBlocks);
+        bool NewTaskDialog(List<TaskBlock> taskBlocks, TaskBlock selectedTB = null);
     }
 }

@@ -12,13 +12,17 @@ namespace To_do_list
     /// </summary>
     public partial class NewTaskDialog : Window
     {
-        public NewTaskDialog(List<TaskBlock> taskBlocks)
+        public NewTaskDialog(List<TaskBlock> taskBlocks, TaskBlock selectedTB = null)
         {
             InitializeComponent();
             descTextBox.GotFocus += RemoveText;
             descTextBox.LostFocus += AddText;
             comboBox.ItemsSource = taskBlocks;
             comboBox.DisplayMemberPath = "Title";
+            if(selectedTB != null)
+            {
+                comboBox.SelectedItem = selectedTB;
+            }
         }
 
         public string Description 
